@@ -43,3 +43,9 @@ def SayHello(name):
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=int(port))
+
+@app.route('/',methods=['POST'])
+def foo():
+   data = json.loads(request.data)
+   print "New commit by: {}".format(data['commits'][0]['author']['name'])
+   return "OK"
